@@ -1,0 +1,11 @@
+﻿{
+	"name": "EarlyMoon",
+	"version_number": "1.0.0",
+	"website_url": "https://github.com/Tizitendo/HalcyonKnight",
+	"description": "Reworks Halcyonite to be a bit harder",
+	"dependencies": [
+		"bbepis-BepInExPack-5.4.2108",
+		"RiskofThunder-HookGenPatcher-1.2.3",
+		"0n_x-HalcyonFixes-1.2.0"
+	]
+}
