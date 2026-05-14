@@ -16,7 +16,7 @@ public sealed class EarlyMoon : BaseUnityPlugin
     public const string PluginGUID = PluginAuthor + "." + PluginName;
     public const string PluginAuthor = "Onyx";
     public const string PluginName = "EarlyMoon";
-    public const string PluginVersion = "1.0.0";
+    public const string PluginVersion = "1.0.1";
 
 	public static EarlyMoon Instance;
 	public static ConfigEntry<int> moonTpStage { get; set; }
@@ -37,10 +37,18 @@ public sealed class EarlyMoon : BaseUnityPlugin
 
 		On.RoR2.SceneDirector.PlaceTeleporter += (orig, self) =>
 		{
-			if ((Run.instance.stageClearCount + 1) % moonTpStage.Value == 0)
+			if (!self.teleporterSpawnCard)
+			{
+				orig(self);
+				return;
+			}
+			
+			if ((SceneCatalog.GetSceneDefForCurrentScene().stageOrder) % moonTpStage.Value == 0)
 			{
 				self.teleporterSpawnCard = MoonTp;
-			} else {
+			}
+			else
+			{
 				self.teleporterSpawnCard = defaultTp;
 			}
 			orig(self);
